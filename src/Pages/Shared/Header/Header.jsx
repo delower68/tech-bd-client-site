@@ -28,38 +28,34 @@ const Header = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link>Home</Link>
+                <Link to='/'>Home</Link>
               </li>
               <li tabIndex={0}>
-                <Link className="justify-between">
-                  Services
-                  
-                </Link>
-                
+                <Link className="justify-between">Services</Link>
               </li>
               <li>
                 <Link>Add Service</Link>
               </li>
             </ul>
           </div>
-          <div>
-            <img  className="h-12 "
+          <div className="flex justify-center align-center ">
+            <img
+              className="h-12 mr-3 rounded-full "
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpOtqwjmbfon4nDNKAFRE4Yr_kpM9A8ZEejA&usqp=CAU"
               alt=""
             />
+            <div className="lg:mt-1 ">
+            <h1 className=" text-2xl ">Dream Vally</h1>
+            </div>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
-            <li>
-              <Link>Home</Link>
+            <li className="mr-2">
+              <Link to='/'>Home</Link>
             </li>
-            <li tabIndex={0}>
-              <Link>
-                Services
-                
-              </Link>
-              
+            <li className="mr-2">
+              <Link>Services</Link>
             </li>
             <li>
               <Link>Add Service</Link>
@@ -67,7 +63,9 @@ const Header = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link className="btn">Log out</Link>
+          <Link to='/login' className="btn mr-2">Log In</Link>
+          <Link to='/register' className="btn">Sign Up</Link>
+          <Link to='/login' className="btn">Log out</Link>
         </div>
       </div>
     </div>

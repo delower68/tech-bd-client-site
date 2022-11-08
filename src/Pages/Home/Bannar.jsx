@@ -15,9 +15,19 @@ const Bannar = () => {
               around, you can be sure that we are definitely <br /> the top
               travel agency in Kuala Lumpur.
             </p>
-            <Link to='/'>
-              <button className="btn btn-primary">Get Started</button>
-            </Link>
+            <div>
+              <ul>
+                <li> | </li>
+                <li> | </li>
+                <li> | </li>
+                <Link to="/">
+                  <button className="btn btn-primary my-2">Get Started</button>
+                </Link>
+                <li> | </li>
+                <li> | </li>
+                <li> | </li>
+              </ul>
+            </div>
           </div>
           <div>
             <img
