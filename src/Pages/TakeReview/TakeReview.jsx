@@ -8,7 +8,7 @@ const TakeReview = () => {
   const { user } = useContext(AuthContext);
   const { image_url, price, _id, name, description } = useLoaderData();
 
-  const handleGiveReview = e =>{
+  const handleGiveReview = (e) => {
     e.preventDefault();
     const form = e.target;
     const customername = form.name.value;
@@ -16,50 +16,43 @@ const TakeReview = () => {
     const message = form.message.value;
     const photoURL = user?.photoURL;
 
-
     const review = {
-        service: _id,
-        serviceName: name,
-        customerName: customername,
-        photoURL,
-        message,
-        email
-      };
-  
-      
-      fetch("http://localhost:5000/reviews", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(review),
-      })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        if(data.acknowledged){
-            Swal.fire(
-            'Good job!',
-            'You sent a  review!',
-            'successfully')
-            form.reset()
+      service: _id,
+      serviceName: name,
+      customerName: customername,
+      photoURL,
+      message,
+      email,
+    };
+
+    fetch("http://localhost:5000/reviews", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(review),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          Swal.fire("Good job!", "You sent a  review!", "successfully");
+          form.reset();
         }
-    })
-      .catch(err => {
-        console.error(err)
-    })
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
-  }
+  // const {reviews, setReviews} = useState(0);
 
-    // const {reviews, setReviews} = useState(0);
+  // useEffect(()=>{
+  //     fetch('http://localhost:5000/AllReview')
+  //     .then(res => res.json())
+  //     .then(data => setReviews(data));
 
-    // useEffect(()=>{
-    //     fetch('http://localhost:5000/AllReview')
-    //     .then(res => res.json())
-    //     .then(data => setReviews(data));
-
-    // },[setReviews])
-
+  // },[setReviews])
 
   return (
     <div className="py-9 px-7 lg:flex md:block ">
@@ -83,7 +76,7 @@ const TakeReview = () => {
           <h1 className="text-2xl font-bold text-center">
             Give a Honest review
           </h1>
-          <form 
+          <form
             onSubmit={handleGiveReview}
             novalidate=""
             action=""
@@ -127,23 +120,30 @@ const TakeReview = () => {
                 className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
               />
             </div>
-            <div className="space-y-1 text-sm">
-                <textarea
-                  className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 focus:dark:border-violet-400"
-                  name="message"
-                  id="text"
-                  cols="30"
-                  rows="10"
-                  placeholder="Your message"
-                >
-                
-                </textarea>
+            {user?.uid ? (
+              <div>
+                <div className="space-y-1 text-sm">
+                  <textarea
+                    className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 focus:dark:border-violet-400"
+                    name="message"
+                    id="text"
+                    cols="30"
+                    rows="10"
+                    placeholder="Your message"
+                  ></textarea>
                 </div>
-            <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">
-              Give Review
-            </button>
+                <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">
+                  Give Review
+                </button>
+              </div>
+            ) : (
+              <Link to='/login'>
+                <div className="container flex mt-6 flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
+                  <h1> Please login to add a review</h1>{" "}
+                </div>
+              </Link>
+            )}
           </form>
-
         </div>
       </div>
       {/* {reviews.length} */}
