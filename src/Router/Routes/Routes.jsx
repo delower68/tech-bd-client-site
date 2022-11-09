@@ -9,6 +9,7 @@ import Register from "../../Pages/Register/Register";
 import ServiceCard from "../../Pages/Services/ServiceCard";
 import Services from "../../Pages/Services/Services";
 import TakeReview from "../../Pages/TakeReview/TakeReview";
+import UpdateReview from "../../Pages/UpdateReview/UpdateReview";
 
 export const router = createBrowserRouter([
     {
@@ -41,10 +42,12 @@ export const router = createBrowserRouter([
                 path: '/reviews',
                 element: <MyReviews/>
             },
-            // {
-            //     path: '/Allreview',
-            //     element: <AllReview/>
-            // }
+            {
+                path: '/update/:id',
+                element: <UpdateReview/>,
+                loader: ({params})=> fetch(`http://localhost:5000/reviews/${params.id}`)
+
+            }
         ]
     }
 ])

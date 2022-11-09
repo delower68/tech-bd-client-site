@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const ReviewRow = ({ review,handleDelete }) => {
   const { user } = useContext(AuthContext);
   const { serviceName, customerName, photoURL,_id, message, email } = review;
 
-    
+    console.log(_id);
 
   return (
     <div>
@@ -42,8 +43,10 @@ const ReviewRow = ({ review,handleDelete }) => {
         <div>
 
             {/* edit buton  */}
-        <button type="button" className="px-4 py-2 font-semibold rounded-full dark:bg-gray-800 dark:text-gray-500">Edit</button>
+        <Link to={`/update/${_id}`}>
+        <button  type="button" className="px-4 py-2 font-semibold rounded-full dark:bg-gray-800 dark:text-gray-500">Edit</button>
 
+        </Link>
 
         {/* delete button here  */}
         <button onClick={()=>handleDelete(_id)} className="btn btn-circle ml-2">

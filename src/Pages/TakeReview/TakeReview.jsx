@@ -99,8 +99,7 @@ const TakeReview = () => {
                 Email
               </label>
               <input
-                defaultValue={user?.email}
-                readOnly
+                
                 type="text"
                 name="email"
                 placeholder="Email"
