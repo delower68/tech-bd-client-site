@@ -1,78 +1,81 @@
-import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
-    const {signIn, auth, setUser} = useContext(AuthContext);
+  const { signIn, auth, setUser } = useContext(AuthContext);
   const [error, setError] = useState();
 
   const navigate = useNavigate();
 
-  const location = useLocation()
+  const location = useLocation();
 
-  const from = location.state?.from?.pathname || '/' ;
+  const from = location.state?.from?.pathname || "/";
 
-  const {providerLogin} =useContext(AuthContext);
-    
+  const { providerLogin } = useContext(AuthContext);
 
-
-  // login in with google 
+  // login in with google
   const googleProvider = new GoogleAuthProvider();
-  
-    const handelGoogleSignIn = ()=>{
-          providerLogin(googleProvider)
-          .then(result => {
-              const user = result.user;
-              console.log(user);
-              setUser(user)
-              navigate(from , {replace: true});
 
-          })
-          .catch(error => console.error(error))
-      } 
+  const handelGoogleSignIn = () => {
+    providerLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        setUser(user);
+        Swal.fire("Log in Successfully");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => console.error(error));
+  };
 
+  // login with Github here
 
-      // login with Github here
+  const gitHubProvider = new GithubAuthProvider();
 
-      const gitHubProvider = new GithubAuthProvider()
+  const handelGitHubSignIn = () => {
+    signInWithPopup(auth, gitHubProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        setUser(user);
+        Swal.fire("Log in Successfully");
+        navigate(from, { replace: true });
+      })
+      .then((error) => console.error(error));
+  };
 
-      const handelGitHubSignIn = ()=>{
-        signInWithPopup(auth, gitHubProvider)
-        .then(result =>{
-          const user = result.user;
-          console.log(user);
-          setUser(user);
-          navigate(from , {replace: true});
-        })
-        .then(error => console.error(error))
-      }
+  // form submit here
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email);
 
-      // form submit here 
-      const handleSubmit = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(email);
-    
-        // create user 
-        signIn(email, password)
-          .then((result) => {
-            const user = result.user;
-            console.log(user);
-            setUser(user);
-            form.reset();
-            setError("");
-            navigate(from, { replace: true });
-          })
-          .catch((error) => {
-            console.error(error);
-            setError(error.message);
-          });
-      };
+    // create user
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        setUser(user);
+        Swal.fire("Log in successfully");
+        form.reset();
+        setError("");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+      });
+  };
   return (
-    
     <div className="flex justify-center my-12">
       <div className="  max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 text-white">
         <h1 className="text-4xl font-bold text-center">Login</h1>

@@ -136,7 +136,12 @@ const TakeReview = () => {
                   Give Review
                 </button>
               </div>
-            ) : (
+            ) 
+            
+            : 
+            
+            
+            (
               <Link to='/login'>
                 <div className="container flex mt-6 flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
                   <h1> Please login to add a review</h1>{" "}

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
@@ -9,6 +10,8 @@ const Header = () => {
     logOut()
     .then(()=>{
       setUser({})
+      Swal.fire("Log in Successfully");
+
     })
     .catch(error => console.error(error))
   }

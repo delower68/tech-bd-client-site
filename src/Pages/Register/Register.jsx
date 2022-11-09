@@ -1,5 +1,6 @@
 import React, {  useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
@@ -24,6 +25,7 @@ const Register = () => {
         console.log(user);
         handleUpdateUserProfile(name);
         setError("");
+        Swal.fire("Register Successfully")
         form.reset();
       })
       .catch((error) => {
