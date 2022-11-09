@@ -51,11 +51,11 @@ const Header = () => {
           <div className="flex justify-center align-center ">
             <img
               className="h-12 mr-3 rounded-full "
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpOtqwjmbfon4nDNKAFRE4Yr_kpM9A8ZEejA&usqp=CAU"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuCnotDPdObqmGk-JlQvXM8hYmli-FJr4_cQ&usqp=CAU"
               alt=""
             />
             <div className="lg:mt-1 ">
-            <h1 className=" text-2xl ">Dream Vally</h1>
+            <h1 className=" text-2xl ">Tech- BD</h1>
             </div>
           </div>
         </div>
@@ -65,10 +65,21 @@ const Header = () => {
               <Link to='/'>Home</Link>
             </li>
             <li className="mr-2">
-              <Link>Services</Link>
+              <Link to='services'>Services</Link>
+            </li>
+            {
+              user?.uid?
+              <><li className="mr-2">
+              <Link>My review</Link>
             </li>
             <li>
               <Link>Add Service</Link>
+            </li></>
+            :
+            <></>
+            }
+            <li className="mr-2">
+              <Link>Blog</Link>
             </li>
           </ul>
         </div>

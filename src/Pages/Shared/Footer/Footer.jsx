@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import image from '../../../asset/Traveling.png'
 
 const Footer = () => {
     return (
@@ -14,10 +13,10 @@ const Footer = () => {
               className="flex justify-center space-x-3 lg:justify-start"
             >
               <div>
-                <img  className="flex items-center justify-center w-12 h-12 rounded-full" src={image} alt="" />
+                <img  className="flex items-center justify-center w-12 h-12 rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuCnotDPdObqmGk-JlQvXM8hYmli-FJr4_cQ&usqp=CAU" alt="" />
               </div>
               <span className="self-center text-2xl font-semibold">
-                Dream Vally
+              Tech- BD
               </span>
             </Link>
           </div>

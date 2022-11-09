@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import image from "../../asset/Traveling.png";
+import image from "../../asset/undraw_Youtube_tutorial_re_69qc.png";
 
 const Bannar = () => {
   return (
@@ -8,22 +8,17 @@ const Bannar = () => {
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center">
-            <h1 className="text-5xl font-bold">Let's Travel World!</h1>
+            <h1 className="text-5xl font-bold">Let's Get more Info of Tech</h1>
             <p className="py-6">
-              At Dream Vally, travelling to your favourite holiday destinations
-              are now easier than ever. <br /> Offering some of the best deals
-              around, you can be sure that we are definitely <br /> the top
-              travel agency in Kuala Lumpur.
+            Tech BD is a Bangladesh based online portal where content <br />  are based on technical feature. Here i just selling <br />  the some info  of Technology on YouTube.
             </p>
             <div>
               <ul>
                 <li> | </li>
                 <li> | </li>
-                <li> | </li>
                 <Link to="/">
-                  <button className="btn btn-primary my-2">Get Started</button>
+                  <button className="btn btn-primary my-2">Let's Go</button>
                 </Link>
-                <li> | </li>
                 <li> | </li>
                 <li> | </li>
               </ul>
