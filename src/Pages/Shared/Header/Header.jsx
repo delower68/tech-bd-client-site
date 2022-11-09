@@ -46,13 +46,16 @@ const Header = () => {
               <li tabIndex={0}>
                 <Link className="justify-between">Services</Link>
               </li>
+              <li className="mr-2">
+              <Link to='/blog'>Blog</Link>
+            </li>
               {
               user?.uid?
               <><li className="mr-2">
               <Link  to='/reviews'>My review</Link>
             </li>
             <li>
-              <Link>Add Service</Link>
+              <Link to='/addService'>Add Service</Link>
             </li></>
             :
             <></>
@@ -76,7 +79,7 @@ const Header = () => {
               <Link to='/'>Home</Link>
             </li>
             <li className="mr-2">
-              <Link to='services'>Services</Link>
+              <Link to='/services'>Services</Link>
             </li>
             {
               user?.uid?
@@ -84,13 +87,13 @@ const Header = () => {
               <Link to='/reviews'>My review</Link>
             </li>
             <li>
-              <Link>Add Service</Link>
+              <Link to='/addService'>Add Service</Link>
             </li></>
             :
             <></>
             }
             <li className="mr-2">
-              <Link>Blog</Link>
+              <Link to='/blog'>Blog</Link>
             </li>
           </ul>
         </div>
