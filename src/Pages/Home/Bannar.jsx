@@ -27,7 +27,7 @@ const Bannar = () => {
           <div>
             <img
               src={image}
-              className="max-w-sm rounded-lg shadow-2xl"
+              className="w-full h-64 rounded-lg shadow-2xl"
               alt=""
             />
           </div>

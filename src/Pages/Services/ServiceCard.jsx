@@ -7,10 +7,13 @@ const ServiceCard = ({service}) => {
     return (
         <div className="card card-compact border-blue-500 w-96 bg-base-100 shadow-xl">
       <figure>
-        <img className='w-full h-72' src={image_url} alt="Shoes" />
+        <img className='w-full h-56' src={image_url} alt="Shoes" />
       </figure>
       <div className="card-body">
+        <div className='flex ' > 
         <h2 className="card-title">{name}</h2>
+        <p className='text-semibold text-blue-400'>({rating})</p>
+        </div>
         <p className="text-2xl text-orange-600 font-semibold">
           Price: ${price}
         </p>
@@ -18,8 +21,7 @@ const ServiceCard = ({service}) => {
             {decriptions}...
         </p>
         <div className="card-actions justify-end">
-          <Link to={`/checkout/${_id}`}>
-            
+          <Link to={`/services/${_id}`}>
             <button className="btn btn-primary">See more</button>
           </Link>
         </div>

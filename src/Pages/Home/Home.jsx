@@ -9,7 +9,7 @@ const Home = () => {
                 <Bannar/>
                 <Services/>
                 <div className=' text-center py-6'>
-                    <Link><button className="btn btn-primary">Sell All</button></Link>
+                    <Link to='services'><button className="btn btn-primary">Sell All</button></Link>
                 </div>
         </div>
     );

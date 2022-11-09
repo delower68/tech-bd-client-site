@@ -43,9 +43,17 @@ const Header = () => {
               <li tabIndex={0}>
                 <Link className="justify-between">Services</Link>
               </li>
-              <li>
-                <Link>Add Service</Link>
-              </li>
+              {
+              user?.uid?
+              <><li className="mr-2">
+              <Link  to='/reviews'>My review</Link>
+            </li>
+            <li>
+              <Link>Add Service</Link>
+            </li></>
+            :
+            <></>
+            }
             </ul>
           </div>
           <div className="flex justify-center align-center ">
@@ -70,7 +78,7 @@ const Header = () => {
             {
               user?.uid?
               <><li className="mr-2">
-              <Link>My review</Link>
+              <Link to='/reviews'>My review</Link>
             </li>
             <li>
               <Link>Add Service</Link>
