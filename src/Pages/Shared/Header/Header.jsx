@@ -86,7 +86,7 @@ const Header = () => {
               <><li className="mr-2">
               <Link to='/reviews'>My review</Link>
             </li>
-            <li>
+            <li className="mr-2">
               <Link to='/addService'>Add Service</Link>
             </li></>
             :
@@ -105,7 +105,7 @@ const Header = () => {
             </div>
             :
             <div>
-              <Link to='/register' className="btn">Sign Up</Link>
+              <Link to='/register' className="btn mr-1">Sign Up</Link>
               <Link to='/login' className="btn">Log In</Link>
             </div>
 

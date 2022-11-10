@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const AddService = () => {
   const [user, setUser] = useState({});
+
 
   const handleAddService = (event) => {
     event.preventDefault();
@@ -18,7 +21,7 @@ const AddService = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          Swal.fire('New service added successfully')
+          Swal.fire("New service added successfully");
           event.target.reset();
         }
       });
@@ -50,6 +53,7 @@ const AddService = () => {
               type="text"
               name="name"
               id="name"
+              required
               placeholder="Name"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
             />
@@ -63,6 +67,7 @@ const AddService = () => {
               type="text"
               name="price"
               id="name"
+              required
               placeholder="Price"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
             />
@@ -76,6 +81,7 @@ const AddService = () => {
               type="text"
               name="rating"
               id="name"
+              required
               placeholder="Rating"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
             />
@@ -88,26 +94,27 @@ const AddService = () => {
               onBlur={handleInputBlur}
               type="text"
               name="description"
+              required
               placeholder="Description"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
             />
           </div>
           <div className="space-y-1 text-sm">
             <label for="photoURL" className="block dark:text-gray-400">
-            image_url
+              image_url
             </label>
             <input
               onBlur={handleInputBlur}
               type="photoURL"
               name="image_url"
               id="photoURL"
+              required
               placeholder="PhotoURL"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
             />
           </div>
 
           <div>
-            
             <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">
               Add Service
             </button>

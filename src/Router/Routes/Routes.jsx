@@ -12,6 +12,7 @@ import ServiceCard from "../../Pages/Services/ServiceCard";
 import Services from "../../Pages/Services/Services";
 import TakeReview from "../../Pages/TakeReview/TakeReview";
 import UpdateReview from "../../Pages/UpdateReview/UpdateReview";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
     {
