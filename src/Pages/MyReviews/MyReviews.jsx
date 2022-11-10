@@ -40,8 +40,8 @@ const MyReviews = () => {
 
   return (
     <div>
-      {
-        user?.email?
+      
+        
         <div>
             <h1 className="container flex mt-6 flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100">You sent {reviews.length} reviews</h1>
       <div className="grid gap-4 py-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 ">
@@ -54,11 +54,14 @@ const MyReviews = () => {
                 }
         </div>
         </div>
-        :
-        <div>
+        
+        {
+          reviews.length == 0 &&
+          <div>
             <h1 className="container flex mt-6 flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100">No reviews were added</h1>
         </div>
-      }
+        }
+      
       </div>
   );
 };
