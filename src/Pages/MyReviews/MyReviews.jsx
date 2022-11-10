@@ -1,21 +1,34 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import ReviewRow from "./ReviewRow";
 
 const MyReviews = () => {
-  const { user } = useContext(AuthContext);
+  const { user,logOut } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
   
   
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`)
-      .then((res) => res.json())
+    document.title= 'TechBD-MyReviews'
+
+    fetch(`http://localhost:5000/reviews?email=${user?.email}`,{
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('techToken')}`
+      }
+    })
+      .then((res) => {
+        if(res.status === 401 || res.status === 403){
+         return logOut()
+        }
+        return res.json()
+      })
       .then((data) => {
         setReviews(data)
+        // console.log(data);
       });
-  }, [user?.email]);
+  }, [user?.email, logOut]);
 
 
   // review delere 

@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UpdateReview = () => {
   const storedUser = useLoaderData();
   const [user, setUser] = useState(storedUser);
+
+  useEffect(()=>{
+    document.title= 'TechBD-myReviews/update'
+  })
 
   const handleUpdateReview = (event) => {
     event.preventDefault();

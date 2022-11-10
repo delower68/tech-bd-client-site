@@ -8,6 +8,11 @@ const TakeReview = () => {
   const { user } = useContext(AuthContext);
   const { image_url, price, _id, name, description } = useLoaderData();
 
+  useEffect(()=>{
+    document.title= 'TechBD-review/addReview'
+  })
+
+
   const handleGiveReview = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -56,7 +61,7 @@ const TakeReview = () => {
 
   return (
     <div className="py-9 px-7 lg:flex md:block ">
-      <div className="w-1/2 mr-2 ">
+      <div className="lg:w-1/2 sm:w-full mr-2 ">
         <div className="card card-compact border-blue-500  bg-base-100 shadow-xl">
           <figure>
             <img className="w-full h-56" src={image_url} alt="Shoes" />
@@ -71,7 +76,7 @@ const TakeReview = () => {
         </div>
       </div>
       {/* give a review option  */}
-      <div className="w-1/2">
+      <div className="lg:w-1/2 sm:w-full">
         <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-base-100 dark:text-gray-100">
           <h1 className="text-2xl font-bold text-center">
             Give a Honest review

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
@@ -6,6 +6,9 @@ import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 const AddService = () => {
   const [user, setUser] = useState({});
 
+  useEffect(()=>{
+    document.title= 'TechBD-addService'
+  })
 
   const handleAddService = (event) => {
     event.preventDefault();

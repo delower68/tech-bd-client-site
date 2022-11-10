@@ -1,9 +1,13 @@
-import React, {  useContext, useState } from "react";
+import React, {  useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
+
+  useEffect(()=>{
+    document.title= 'TechBD-signUp'
+  })
     
     const {createUser,setUser,loading,  updateUserProfile} = useContext(AuthContext)
   const { error, setError } = useState();

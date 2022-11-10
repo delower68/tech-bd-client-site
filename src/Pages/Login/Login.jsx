@@ -3,12 +3,17 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
+
+  useEffect(()=>{
+    document.title= 'TechBD-login'
+  })
+
   const { signIn, auth, setUser, loading } = useContext(AuthContext);
   const [error, setError] = useState();
 
@@ -25,21 +30,43 @@ const Login = () => {
 
   const handelGoogleSignIn = () => {
     providerLogin(googleProvider)
-      .then((result) => {
-        const user = result.user;
-        if (loading) {
-          return (
-            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-900"></div>
-          );
-        }
-        else{
-          setUser(user);
+    .then((result) => {
+      const user = result.user;
 
-        }
-        Swal.fire("Log in Successfully");
-        navigate(from, { replace: true });
-      })
-      .catch((error) => console.error(error));
+      const currentUser = {
+        email: user?.email,
+      };
+      // console.log(user);
+      if (loading) {
+        return (
+          <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-900"></div>
+        );
+      } else {
+        // setUser(user);
+
+        // get jwt
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("techToken", data.token);
+            setUser(user);
+            setError("");
+            navigate(from, { replace: true });
+          });
+      }
+      Swal.fire("Log in successfully");
+    })
+    .catch((error) => {
+      console.error(error);
+      setError(error.message);
+    });
   };
 
   // login with Github here
@@ -48,22 +75,44 @@ const Login = () => {
 
   const handelGitHubSignIn = () => {
     signInWithPopup(auth, gitHubProvider)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        if (loading) {
-          return (
-            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-900"></div>
-          );
-        }
-        else{
-          setUser(user);
+    .then((result) => {
+      const user = result.user;
 
-        }
-        Swal.fire("Log in Successfully");
-        navigate(from, { replace: true });
-      })
-      .then((error) => console.error(error));
+      const currentUser = {
+        email: user?.email,
+      };
+      // console.log(user);
+      if (loading) {
+        return (
+          <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-900"></div>
+        );
+      } else {
+        // setUser(user);
+
+        // get jwt
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("techToken", data.token);
+            setUser(user);
+            
+            setError("");
+            navigate(from, { replace: true });
+          });
+      }
+      Swal.fire("Log in successfully");
+    })
+    .catch((error) => {
+      console.error(error);
+      setError(error.message);
+    });
   };
 
   // form submit here
@@ -73,25 +122,41 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-
     // create user
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+
+        const currentUser = {
+          email: user?.email,
+        };
+        // console.log(user);
         if (loading) {
           return (
             <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-900"></div>
           );
-        }
-        else{
-          setUser(user);
+        } else {
+          // setUser(user);
 
+          // get jwt
+          fetch("http://localhost:5000/jwt", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(currentUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              localStorage.setItem("techToken", data.token);
+              setUser(user);
+              form.reset();
+              setError("");
+              navigate(from, { replace: true });
+            });
         }
         Swal.fire("Log in successfully");
-        form.reset();
-        setError("");
-        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
@@ -142,6 +207,7 @@ const Login = () => {
           <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">
             Sign in
           </button>
+          <h1>{error}</h1>
         </form>
         <div className="flex items-center pt-4 space-x-1">
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>

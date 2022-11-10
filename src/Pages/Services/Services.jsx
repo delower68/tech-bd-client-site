@@ -3,12 +3,16 @@ import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import ServiceCard from "./ServiceCard";
 
 const Services = () => {
+
+
   const [services, setServices] = useState([]);
   const { loading } = useContext(AuthContext);
 
   
   
     useEffect(() => {
+      document.title= 'TechBD-service'
+
       fetch("http://localhost:5000/services")
         .then((res) => res.json())
         .then((data) => {

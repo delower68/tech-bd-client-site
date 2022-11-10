@@ -10,7 +10,7 @@ const Header = () => {
     logOut()
     .then(()=>{
       setUser({})
-      Swal.fire("Log in Successfully");
+      Swal.fire("Log out Successfully");
 
     })
     .catch(error => console.error(error))
@@ -44,7 +44,7 @@ const Header = () => {
                 <Link to='/'>Home</Link>
               </li>
               <li tabIndex={0}>
-                <Link className="justify-between">Services</Link>
+                <Link to='/services' className="justify-between">Services</Link>
               </li>
               <li className="mr-2">
               <Link to='/blog'>Blog</Link>
