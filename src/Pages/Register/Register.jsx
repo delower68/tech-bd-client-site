@@ -5,7 +5,7 @@ import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
     
-    const {createUser,setUser, updateUserProfile} = useContext(AuthContext)
+    const {createUser,setUser,loading,  updateUserProfile} = useContext(AuthContext)
   const { error, setError } = useState();
 
 
@@ -23,6 +23,15 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        if (loading) {
+          return (
+            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-900"></div>
+          );
+        }
+        else{
+          setUser(user);
+
+        }
         handleUpdateUserProfile(name);
         setError("");
         Swal.fire("Register Successfully")

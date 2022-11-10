@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
-  const { signIn, auth, setUser } = useContext(AuthContext);
+  const { signIn, auth, setUser, loading } = useContext(AuthContext);
   const [error, setError] = useState();
 
   const navigate = useNavigate();
@@ -27,8 +27,15 @@ const Login = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
-        setUser(user);
+        if (loading) {
+          return (
+            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-900"></div>
+          );
+        }
+        else{
+          setUser(user);
+
+        }
         Swal.fire("Log in Successfully");
         navigate(from, { replace: true });
       })
@@ -44,7 +51,15 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        setUser(user);
+        if (loading) {
+          return (
+            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-900"></div>
+          );
+        }
+        else{
+          setUser(user);
+
+        }
         Swal.fire("Log in Successfully");
         navigate(from, { replace: true });
       })
@@ -57,14 +72,22 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email);
+
 
     // create user
     signIn(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
-        setUser(user);
+        if (loading) {
+          return (
+            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-900"></div>
+          );
+        }
+        else{
+          setUser(user);
+
+        }
         Swal.fire("Log in successfully");
         form.reset();
         setError("");
