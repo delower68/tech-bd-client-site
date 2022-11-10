@@ -1,12 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
-const ReviewRow = ({ review,handleDelete }) => {
-  const { user } = useContext(AuthContext);
-  const { serviceName, customerName, photoURL,_id, message, email } = review;
-
-    console.log(_id);
+const ReviewRow = ({ review, handleDelete }) => {
+  const { serviceName, customerName, _id, photoURL, message } = review;
 
   return (
     <div>
@@ -15,7 +11,7 @@ const ReviewRow = ({ review,handleDelete }) => {
           <div className="flex space-x-4">
             <div>
               <img
-                src={user?.photoURL}
+                src={photoURL}
                 alt=""
                 className="object-cover w-12 h-12 rounded-full dark:bg-gray-500"
               />
@@ -37,35 +33,41 @@ const ReviewRow = ({ review,handleDelete }) => {
           </div>
         </div>
         <div className="flex justify-between">
-        <div className="p-4 space-y-2 text-sm dark:text-gray-400">
-          <p>{message}</p>
-        </div>
-        <div>
-
+          <div className="p-4 space-y-2 text-sm dark:text-gray-400">
+            <p>{message}</p>
+          </div>
+          <div>
             {/* edit buton  */}
-        <Link to={`/update/${_id}`}>
-        <button  type="button" className="px-4 py-2 font-semibold rounded-full dark:bg-gray-800 dark:text-gray-500">Edit</button>
+            <Link to={`/update/${_id}`}>
+              <button
+                type="button"
+                className="px-4 py-2 font-semibold rounded-full dark:bg-gray-800 dark:text-gray-500"
+              >
+                Edit
+              </button>
+            </Link>
 
-        </Link>
-
-        {/* delete button here  */}
-        <button onClick={()=>handleDelete(_id)} className="btn btn-circle ml-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-        </div>
+            {/* delete button here  */}
+            <button
+              onClick={() => handleDelete(_id)}
+              className="btn btn-circle ml-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>

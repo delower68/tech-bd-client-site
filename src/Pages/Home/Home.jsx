@@ -6,17 +6,13 @@ import Bannar from "./Bannar";
 import LimitedServices from "./LimitedServices/LimitedServices";
 
 const Home = () => {
-
-
-
   const [services, setServices] = useState([]);
   const { loading } = useContext(AuthContext);
 
   useEffect(() => {
-  
-      document.title= 'TechBD-home'
+    document.title = "TechBD-home";
 
-    fetch("http://localhost:5000/")
+    fetch("https://dream-vally-services-server.vercel.app/")
       .then((res) => res.json())
       .then((data) => {
         if (loading) {
@@ -47,20 +43,26 @@ const Home = () => {
       </div>
 
       <div>
-      <div className="p-6 py-28 dark:bg-violet-400 dark:text-gray-900">
-	<div className="container mx-auto">
-		<div className="flex flex-col lg:flex-row items-center justify-between">
-			<h2 className="text-center text-6xl tracking-tighter font-bold">Up to
-				50% Off 
-			</h2>
-			<div className="space-x-2 text-center py-2 lg:py-0">
-				<span>Plus free reading! Use promo code:</span>
-				<span className="font-bold text-lg">Tech-BD</span>
-			</div>
-			<Link to='/services' rel="noreferrer noopener" className="px-5 mt-4 lg:mt-0 py-3 rounded-md border block dark:bg-gray-50 dark:text-gray-900 dark:border-gray-400">Read Now</Link>
-		</div>
-	</div>
-</div>
+        <div className="p-6 py-28 dark:bg-violet-400 dark:text-gray-900">
+          <div className="container mx-auto">
+            <div className="flex flex-col lg:flex-row items-center justify-between">
+              <h2 className="text-center text-6xl tracking-tighter font-bold">
+                Up to 50% Off
+              </h2>
+              <div className="space-x-2 text-center py-2 lg:py-0">
+                <span>Plus free reading! Use promo code:</span>
+                <span className="font-bold text-lg">Tech-BD</span>
+              </div>
+              <Link
+                to="/services"
+                rel="noreferrer noopener"
+                className="px-5 mt-4 lg:mt-0 py-3 rounded-md border block dark:bg-gray-50 dark:text-gray-900 dark:border-gray-400"
+              >
+                Read Now
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

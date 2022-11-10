@@ -1,33 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UpdateReview = () => {
   const storedUser = useLoaderData();
   const [user, setUser] = useState(storedUser);
 
-  useEffect(()=>{
-    document.title= 'TechBD-myReviews/update'
-  })
+  useEffect(() => {
+    document.title = "TechBD-myReviews/update";
+  });
 
   const handleUpdateReview = (event) => {
     event.preventDefault();
 
-    const form = event.target;
-    // const customername = user.customername;
-    const message = form.message.value;
-
-    setUser( message);
-
-
-    console.log(user);
-    fetch(`http://localhost:5000/reviews/${storedUser._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
+    fetch(
+      `https://dream-vally-services-server.vercel.app/reviews/${storedUser._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -37,27 +32,14 @@ const UpdateReview = () => {
       });
   };
 
-
-//   const handleInputChange = (event) => {
-//     const form = event.target;
-//     // const customername = user.customername;
-//     const message = form.message.value;
-
-//     setUser( message);
-
-
-//     console.log(message);
-//   };
-
-  //   const handleUpdateReview = e =>{
-  //     e.preventDefault();
-  //     const form = e.target;
-  //     const customername = form.name.value;
-  //     const email = form.email.value;
-  //     const message = form.message.value;
-  //     const photoURL = storedUser?.photoURL;
-
-  //   }
+  const handleInputChange = (event) => {
+    const field = event.target.name;
+    const value = event.target.value;
+    const newUser = { ...user };
+    newUser[field] = value;
+    setUser(newUser);
+    console.log(newUser);
+  };
 
   return (
     <div className="flex justify-center py-7">
@@ -76,9 +58,8 @@ const UpdateReview = () => {
               Name
             </label>
             <input
-            //   onBlur={handleInputChange}
-              defaultValue={storedUser?.customerName}
-              readOnly
+              onChange={handleInputChange}
+              defaultValue={storedUser.name}
               type="text"
               name="name"
               id="name"
@@ -91,9 +72,8 @@ const UpdateReview = () => {
               Email
             </label>
             <input
-            //   onBlur={handleInputChange}
+              onChange={handleInputChange}
               defaultValue={storedUser?.email}
-              readOnly
               type="text"
               name="email"
               placeholder="Email"
@@ -104,7 +84,7 @@ const UpdateReview = () => {
           <div>
             <div className="space-y-1 text-sm">
               <textarea
-                // onBlur={handleInputChange}
+                onChange={handleInputChange}
                 className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 focus:dark:border-violet-400"
                 name="message"
                 id="text"

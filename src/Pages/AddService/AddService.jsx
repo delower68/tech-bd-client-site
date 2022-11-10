@@ -6,15 +6,15 @@ import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 const AddService = () => {
   const [user, setUser] = useState({});
 
-  useEffect(()=>{
-    document.title= 'TechBD-addService'
-  })
+  useEffect(() => {
+    document.title = "TechBD-addService";
+  });
 
   const handleAddService = (event) => {
     event.preventDefault();
     console.log(user);
 
-    fetch("http://localhost:5000/addService", {
+    fetch("https://dream-vally-services-server.vercel.app/addService", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -52,7 +52,7 @@ const AddService = () => {
               Name
             </label>
             <input
-              onBlur={handleInputBlur}
+              onChange={handleInputBlur}
               type="text"
               name="name"
               id="name"
@@ -66,7 +66,7 @@ const AddService = () => {
               Price
             </label>
             <input
-              onBlur={handleInputBlur}
+              onChange={handleInputBlur}
               type="text"
               name="price"
               id="name"
@@ -80,7 +80,7 @@ const AddService = () => {
               Rating
             </label>
             <input
-              onBlur={handleInputBlur}
+              onChange={handleInputBlur}
               type="text"
               name="rating"
               id="name"
@@ -94,7 +94,7 @@ const AddService = () => {
               Description
             </label>
             <input
-              onBlur={handleInputBlur}
+              onChange={handleInputBlur}
               type="text"
               name="description"
               required
@@ -107,7 +107,7 @@ const AddService = () => {
               image_url
             </label>
             <input
-              onBlur={handleInputBlur}
+              onChange={handleInputBlur}
               type="photoURL"
               name="image_url"
               id="photoURL"

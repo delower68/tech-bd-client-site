@@ -3,32 +3,24 @@ import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import ServiceCard from "./ServiceCard";
 
 const Services = () => {
-
-
   const [services, setServices] = useState([]);
   const { loading } = useContext(AuthContext);
 
-  
-  
-    useEffect(() => {
-      document.title= 'TechBD-service'
+  useEffect(() => {
+    document.title = "TechBD-service";
 
-      fetch("http://localhost:5000/services")
-        .then((res) => res.json())
-        .then((data) => {
-          if (loading) {
-            return (
-              <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-900"></div>
-            );
-          }
-          else{
-            setServices(data)
-
-          }
-        });
-    }, [setServices, loading]);
-  
-
+    fetch("https://dream-vally-services-server.vercel.app/services")
+      .then((res) => res.json())
+      .then((data) => {
+        if (loading) {
+          return (
+            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-900"></div>
+          );
+        } else {
+          setServices(data);
+        }
+      });
+  }, [loading]);
 
   return (
     <div>

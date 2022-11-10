@@ -42,24 +42,7 @@ const Login = () => {
           <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-900"></div>
         );
       } else {
-        // setUser(user);
-
-        // get jwt
-        fetch("http://localhost:5000/jwt", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(currentUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            localStorage.setItem("techToken", data.token);
-            setUser(user);
-            setError("");
-            navigate(from, { replace: true });
-          });
+        setUser(user);
       }
       Swal.fire("Log in successfully");
     })
@@ -78,34 +61,16 @@ const Login = () => {
     .then((result) => {
       const user = result.user;
 
-      const currentUser = {
-        email: user?.email,
-      };
-      // console.log(user);
+     
       if (loading) {
         return (
           <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-900"></div>
         );
       } else {
-        // setUser(user);
-
-        // get jwt
-        fetch("http://localhost:5000/jwt", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(currentUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            localStorage.setItem("techToken", data.token);
-            setUser(user);
-            
-            setError("");
-            navigate(from, { replace: true });
-          });
+        setUser(user);
+        setError("");
+        navigate(from, { replace: true });
+         
       }
       Swal.fire("Log in successfully");
     })
@@ -124,44 +89,24 @@ const Login = () => {
 
     // create user
     signIn(email, password)
-      .then((result) => {
-        const user = result.user;
-
-        const currentUser = {
-          email: user?.email,
-        };
-        // console.log(user);
-        if (loading) {
-          return (
-            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-900"></div>
-          );
-        } else {
-          // setUser(user);
-
-          // get jwt
-          fetch("http://localhost:5000/jwt", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(currentUser),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              localStorage.setItem("techToken", data.token);
-              setUser(user);
-              form.reset();
-              setError("");
-              navigate(from, { replace: true });
-            });
-        }
-        Swal.fire("Log in successfully");
-      })
-      .catch((error) => {
-        console.error(error);
-        setError(error.message);
-      });
+    .then((result) => {
+      const user = result.user;
+      console.log(user);
+      if (loading) {
+        return (
+          <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-900"></div>
+        );
+      } else {
+        setUser(user);
+      }
+      Swal.fire("successfully Log in");
+      form.reset();
+      setError("");
+    })
+    .catch((error) => {
+      console.error(error);
+      setError(error.message);
+    });
   };
   return (
     <div className="flex justify-center my-12">
