@@ -5,7 +5,7 @@ import 'react-photo-view/dist/react-photo-view.css';
 
 const ServiceCard = ({service}) => {
     const {image_url, price, _id, name,description, rating} = service ; 
-    const  decriptions = description.slice(1,250)
+    const  decriptions = description
     return (
         <div className="card card-compact border-blue-500 w-96 bg-base-100 shadow-xl">
       <figure>

@@ -4,10 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-### website Name: Tech-BD
+### website Name: CarSome 
 
 ### Live website link- 
-     https://dream-vally.web.app/ 
+     
     
 ```
     What is used in this website-
@@ -20,6 +20,8 @@ react bootstrap
 - Use the Environment variable 
 - Create some private route
 - Responsive for mobile and laptop
-- You login from email password, google, github
+- You login from email password, google
 - Create some Blog
+-   Admin route and seller routes are diffrent
+
 
